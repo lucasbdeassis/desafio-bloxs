@@ -14,7 +14,7 @@ There is a docker-compose file in the root of the project, which can be used to 
 docker-compose up
 ```
 
-The application will be available at [http:``//localhost](http://localhost)``
+The application will be available at [http://localhost](http://localhost)
 
 The docker compose will start all the services, including the database, and will also run the creation of the database tables and the insertion of the initial data.
 
@@ -36,7 +36,7 @@ The application has an authentication layer using JWT, where the user can authen
 
 #### Account Controller
 
-GET ````/accounts/{account_id}````
+GET ``/accounts/{account_id}``
 This endpoint retrieves the details of a specific account.
 
 URL Parameters:
