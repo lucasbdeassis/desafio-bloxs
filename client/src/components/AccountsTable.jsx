@@ -5,6 +5,7 @@ function AccountsTable() {
   const [accounts, setAccounts] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [count, setCount] = useState(0);
+  const [maxAccounts, setMaxAccounts] = useState(10);
 
   useEffect(() => {
     fetch("http://127.0.0.1:5000/accounts", {
@@ -40,7 +41,7 @@ function AccountsTable() {
               </tr>
             </thead>
             <tbody>
-              {accounts.map((account, index) => (
+              {accounts.slice(0, maxAccounts).map((account, index) => (
                 <tr key={index}>
                   <th scope='row'>{index + 1}</th>
                   <td>{account.name}</td>
@@ -50,6 +51,21 @@ function AccountsTable() {
               ))}
             </tbody>
           </table>
+        </div>
+        <div className='card-footer text-center'>
+          <a
+            className='button'
+            onClick={() => setMaxAccounts((maxAccounts) => maxAccounts + 5)}
+          >
+            mostrar mais
+          </a>
+          <span> | </span>
+          <a
+            className='button'
+            onClick={() => setMaxAccounts((maxAccounts) => maxAccounts - 5)}
+          >
+            mostrar menos
+          </a>
         </div>
       </div>
       {showModal && (
