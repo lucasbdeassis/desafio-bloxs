@@ -18,6 +18,13 @@ The application will be available at [http://localhost](http://localhost)
 
 The docker compose will start all the services, including the database, and will also run the creation of the database tables and the insertion of the initial data.
 
+The app can be accessed wit the credentials:
+
+```txt
+email: john.doe@example.com
+password: password
+```
+
 ## Backend
 
 The backend was built using Flask, with the MySQL database and the SQLAlchemy ORM.
