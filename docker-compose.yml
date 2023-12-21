@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  server:
+    build: ./server
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    environment:
+      - DB_URL=mysql+pymysql://root:password@db/bloxs
+    volumes:
+      - ./server:/app
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: bloxs
+    volumes:
+      - ./server/db:/docker-entrypoint-initdb.d
+
+  client:
+    build: ./client
+    ports:
+      - "80:80"
+    depends_on:
+      - server
