@@ -28,7 +28,7 @@ To ensure interdependence between the layers, and that structures in the inner l
 
 I also applied the concept of dependency injection, where dependencies are injected into the classes that use them, rather than being instantiated within them. Orchestration is done through the Main input file, and injection is facilitated by the use of a Factory pattern.
 
-The development was done using TDD, where the tests were created first and then the code for the tests to pass. The integration tests use an in-memory instance of the bank, with automatic assembly and disassembly.
+The development was done using TDD, where the tests were created first and then the code for the tests to pass. The integration tests use an in-memory instance of the bank, with automatic assembly and disassembly. The end-to-end tests use the actual database, and the data needs to be inserted and deleted manually.
 
 The application has an authentication layer using JWT, where the user can authenticate and receive a token, which must be used to access the protected routes. The token ensures that the user only has access to the data that belongs to them.
 
