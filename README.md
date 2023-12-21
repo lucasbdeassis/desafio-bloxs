@@ -39,6 +39,8 @@ The development was done using TDD, where the tests were created first and then 
 
 The application has an authentication layer using JWT, where the user can authenticate and receive a token, which must be used to access the protected routes. The token ensures that the user only has access to the data that belongs to them.
 
+Just a detail about the way the values are stored in the database, I chose to save them as integers knowing that you only have to divide the value by 100 to get its monetary correspondent. I found it simpler to work with integer values than float/decimals.
+
 ### Endpoints
 
 #### Account Controller
