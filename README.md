@@ -22,7 +22,7 @@ The docker compose will start all the services, including the database, and will
 
 The backend was built using Flask, with the MySQL database and the SQLAlchemy ORM.
 
-As for the chosen architecture, I used MVC following the concepts of Clean Architecture, where the code is divided into layers according to their responsibilities.
+As for the chosen architecture, I used the concepts of Clean Architecture, where the code is divided into layers according to their responsibilities.
 
 To ensure interdependence between the layers, and that structures in the inner layers don't depend on structures in the outer layers, I used the concept of Dependency Inversion, with the declaration of interfaces.
 
