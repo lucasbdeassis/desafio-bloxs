@@ -12,8 +12,7 @@ class CreateAccountInput(TypedDict):
     user_id: str
     balance: int
     max_daily_withdraw: int
-    is_active: bool
-    type: int
+    name: str
 
 
 class AccountService:
@@ -42,7 +41,12 @@ class AccountService:
         user = self.user_repository.get(input["user_id"])
         if not user:
             raise Exception("User not found")
-        account = Account(**input)
+        account = Account(
+            user_id=input["user_id"],
+            balance=input["balance"],
+            max_daily_withdraw=input["max_daily_withdraw"],
+            name=input["name"],
+        )
         self.account_repository.save(account)
         return account
 

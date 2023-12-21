@@ -26,7 +26,13 @@ def get_accounts():
 @requires_auth()
 def create_account():
     with InjectorFactory().get_account_service() as account_service:
-        account = account_service.create(request.json)
+        input = {
+            "user_id": g.user_id,
+            "name": request.json["name"],
+            "balance": request.json["balance"],
+            "max_daily_withdraw": request.json["max_daily_withdraw"],
+        }
+        account = account_service.create(input)
         return account.model_dump(), 201
 
 

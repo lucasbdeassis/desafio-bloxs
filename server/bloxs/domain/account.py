@@ -1,17 +1,17 @@
 from datetime import datetime
 from uuid import UUID, uuid4
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class Account(BaseModel):
-    id: UUID = uuid4()
+    id: UUID = Field(default_factory=uuid4)
     name: str
     user_id: UUID
     balance: int
     max_daily_withdraw: int
-    is_active: bool
-    type: int
+    is_active: bool = True
+    type: int = 1
     created_at: datetime = datetime.now()
 
     def deposit(self, amount: int):

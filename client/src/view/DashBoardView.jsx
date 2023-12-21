@@ -5,7 +5,7 @@ import UserBalance from "../components/UserBalance";
 function DashboarView() {
   return (
     <div className='container'>
-      <div className='row mt-5'>
+      <div className='row mt-5' style={{ maxWidth: "250px" }}>
         <UserBalance />
       </div>
       <div className='row mt-5'>

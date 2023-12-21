@@ -21,10 +21,15 @@ function UserBalance() {
   }, []);
 
   return (
-    <div className='card' style={{ width: "18rem" }}>
-      <div className='card-body'>
-        <h5 className='card-title'>Total Balance</h5>
-        <p className='card-text'>${balance}</p>
+    <div className='container'>
+      <div class='card'>
+        <div class='card-header'>Saldo</div>
+        <div class='card-body'>
+          <h5 class='card-title'>Total:</h5>
+          <p class='card-text'>
+            <strong>${balance}</strong>
+          </p>
+        </div>
       </div>
     </div>
   );
