@@ -14,7 +14,7 @@ There is a docker-compose file in the root of the project, which can be used to 
 docker-compose up
 ```
 
-The application will be available at [http://localhost](http://localhost)
+The application will be available at [http:``//localhost](http://localhost)``
 
 The docker compose will start all the services, including the database, and will also run the creation of the database tables and the insertion of the initial data.
 
@@ -36,7 +36,7 @@ The application has an authentication layer using JWT, where the user can authen
 
 #### Account Controller
 
-GET /accounts/{account_id}
+GET ````/accounts/{account_id}````
 This endpoint retrieves the details of a specific account.
 
 URL Parameters:
@@ -46,14 +46,14 @@ Response:
 
 Returns a JSON object representing the account.
 
-GET /accounts
+GET ``/accounts``
 This endpoint retrieves a list of all accounts associated with the authenticated user.
 
 Response:
 
 Returns a JSON array of objects, each representing an account.
 
-POST /accounts
+POST ``/accounts``
 This endpoint creates a new account for the authenticated user.
 
 Request Body:
@@ -64,7 +64,7 @@ Response:
 
 Returns a JSON object representing the created account.
 
-POST /accounts/{account_id}/deposit
+POST ``/accounts/{account_id}/deposit``
 This endpoint makes a deposit into a specific account.
 
 URL Parameters:
@@ -78,7 +78,7 @@ Response:
 
 Returns a JSON object representing the updated account.
 
-POST /accounts/{account_id}/withdraw
+POST ``/accounts/{account_id}/withdraw``
 This endpoint makes a withdrawal from a specific account.
 
 URL Parameters:
@@ -92,7 +92,7 @@ Response:
 
 Returns a JSON object representing the updated account.
 
-POST /accounts/{account_id}/block
+POST ``/accounts/{account_id}/block``
 This endpoint blocks a specific account.
 
 URL Parameters:
@@ -102,7 +102,7 @@ Response:
 
 Returns a JSON object representing the blocked account.
 
-POST /accounts/{account_id}/unblock
+POST ``/accounts/{account_id}/unblock``
 This endpoint unblocks a specific account.
 
 URL Parameters:
@@ -114,7 +114,7 @@ Returns a JSON object representing the unblocked account.
 
 #### Auth Controller
 
-POST /auth/login
+POST ``/auth/login``
 This endpoint logs in a user.
 
 Request Body:
@@ -125,7 +125,7 @@ Response:
 
 Returns a JSON object containing the user's authentication token.
 
-POST /auth/validate
+POST ``/auth/validate``
 This endpoint validates a user's authentication token.
 
 Request Body:
@@ -138,7 +138,7 @@ Returns a JSON object indicating whether the token is valid.
 
 #### Transaction Controller
 
-GET /transactions
+GET ``/transactions``
 This endpoint retrieves a list of all transactions associated with the authenticated user.
 
 Response:
