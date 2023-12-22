@@ -59,6 +59,11 @@ class AccountService:
 
     def make_withdraw(self, user_id, account_id: str, amount: int):
         account = self.get(user_id, account_id)
+        if (
+            self._get_total_daily_withdraw(account_id) + amount
+            > account.max_daily_withdraw
+        ):
+            raise Exception("Daily withdraw limit exceeded")
         account.withdraw(amount)
         self.update(account)
         self._save_transaction(account_id, account.name, -amount)
@@ -84,6 +89,19 @@ class AccountService:
             transaction_date=datetime.now(),
         )
         self.transaction_repository.save(transaction)
+
+    def _get_total_daily_withdraw(self, account_id: str):
+        transactions = self.transaction_repository.list_transaction_by_account(
+            account_id
+        )
+        total = 0
+        for transaction in transactions:
+            if (
+                transaction.amount < 0
+                and transaction.transaction_date.date() == datetime.now().date()
+            ):
+                total += transaction.amount
+        return total
 
     def list_accounts_by_user(self, user_id: str):
         return self.account_repository.list_accounts_by_user(user_id)

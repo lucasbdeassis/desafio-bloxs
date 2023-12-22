@@ -1,3 +1,5 @@
+import pytest
+
 from bloxs.application.service.account_service import AccountService
 from bloxs.infra.repository.orm_account_repository import OrmAccountRepository
 from bloxs.infra.repository.orm_transaction_repository import OrmTransactionRepository
@@ -123,3 +125,18 @@ def test_list_accounts_by_user(session):
         "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11"
     )
     assert isinstance(accounts, list)
+
+
+def test_exceed_daily_withdraw(session):
+    account_repository = OrmAccountRepository(session)
+    user_repository = OrmUserRepository(session)
+    transaction_repository = OrmTransactionRepository(session)
+    account_service = AccountService(
+        account_repository, user_repository, transaction_repository
+    )
+    with pytest.raises(Exception):
+        account_service.make_withdraw(
+            "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11",
+            "b1eebc99-9c0b-4ef8-bb6d-6bb9bd380a12",
+            10000000,
+        )

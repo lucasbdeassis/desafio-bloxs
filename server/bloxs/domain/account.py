@@ -15,11 +15,15 @@ class Account(BaseModel):
     created_at: datetime = datetime.now()
 
     def deposit(self, amount: int):
+        if not self.is_active:
+            raise Exception("The account is blocked")
         if amount <= 0:
             raise Exception("The deposit value must be greater than 0")
         self.balance += amount
 
     def withdraw(self, amount: int):
+        if not self.is_active:
+            raise Exception("The account is blocked")
         if self.balance - amount <= 0:
             raise Exception("Insufficient funds")
         self.balance -= amount
