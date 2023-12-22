@@ -1,11 +1,11 @@
 from datetime import date
 from uuid import UUID, uuid4
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class User(BaseModel):
-    id: UUID = uuid4()
+    id: UUID = Field(default_factory=uuid4)
     name: str
     surname: str
     email: str
