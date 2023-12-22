@@ -45,6 +45,35 @@ The application has an authentication layer using JWT, where the user can authen
 
 Just a detail about the way the values are stored in the database, I chose to save them as integers knowing that you only have to divide the value by 100 to get its monetary correspondent. I found it simpler to work with integer values than float/decimals.
 
+### Bloxs Application Domain
+
+The Bloxs application is a banking system simulation that allows users to manage accounts and perform transactions.
+
+#### Domain Overview
+
+The domain of the Bloxs application is composed of three main entities: User, Account, and Transaction.
+
+##### User
+A User represents an individual who uses the banking system. Each user is identified by a unique ID and has associated personal information such as email and password.
+
+##### Account
+
+An Account represents a bank account owned by a user. Each account is identified by a unique ID and has associated attributes such as balance, maximum daily withdrawal limit, and name. An account also has a status indicating whether it is active or blocked.
+
+##### Transaction
+
+A Transaction represents a monetary operation performed on an account, such as a deposit or withdrawal. Each transaction is identified by a unique ID and has associated attributes such as the account ID, amount, and transaction date.
+
+##### Domain Implementation
+
+The domain entities are implemented as Python classes in the bloxs/domain directory:
+
+* User: Represents a user in the banking system.
+* Account: Represents a bank account.
+* Transaction: Represents a transaction performed on an account.
+
+These classes encapsulate the core business logic and rules of the Bloxs application. They are independent of any specific infrastructure, database, or web framework, which allows the business logic to be developed and tested independently of the rest of the application.
+
 ### Endpoints
 
 #### Account Controller
