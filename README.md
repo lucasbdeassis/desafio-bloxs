@@ -25,6 +25,10 @@ email: john.doe@example.com
 password: password
 ```
 
+## Frontend
+
+The frontend was built using ReactJS, with the help of Vite. I chose to use Vite because it is a very fast build tool, which makes the development process much more agile. The styling was done using Bootstrap 5.
+
 ## Backend
 
 The backend was built using Flask, with the MySQL database and the SQLAlchemy ORM.
