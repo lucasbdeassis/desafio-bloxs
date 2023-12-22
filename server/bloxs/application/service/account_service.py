@@ -27,8 +27,8 @@ class AccountService:
         self.user_repository = user_repository
         self.transaction_repository = transaction_repository
 
-    def get(self, account_id: str):
-        account = self.account_repository.get(account_id)
+    def get(self, user_id: str, account_id: str):
+        account = self.account_repository.get(user_id, account_id)
         if not account:
             raise Exception("Account not found")
         return account
@@ -50,28 +50,28 @@ class AccountService:
         self.account_repository.save(account)
         return account
 
-    def make_deposit(self, account_id: str, amount: int):
-        account = self.get(account_id)
+    def make_deposit(self, user_id, account_id: str, amount: int):
+        account = self.get(user_id, account_id)
         account.deposit(amount)
         self.update(account)
         self._save_transaction(account_id, account.name, amount)
         return account
 
-    def make_withdraw(self, account_id: str, amount: int):
-        account = self.get(account_id)
+    def make_withdraw(self, user_id, account_id: str, amount: int):
+        account = self.get(user_id, account_id)
         account.withdraw(amount)
         self.update(account)
         self._save_transaction(account_id, account.name, -amount)
         return account
 
-    def block_account(self, account_id: str):
-        account = self.get(account_id)
+    def block_account(self, user_id, account_id: str):
+        account = self.get(user_id, account_id)
         account.block()
         self.update(account)
         return account
 
-    def unblock_account(self, account_id: str):
-        account = self.get(account_id)
+    def unblock_account(self, user_id, account_id: str):
+        account = self.get(user_id, account_id)
         account.unblock()
         self.update(account)
         return account

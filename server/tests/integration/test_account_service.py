@@ -11,7 +11,9 @@ def test_get_account(session):
     account_service = AccountService(
         account_repository, user_repository, transaction_repository
     )
-    account = account_service.get("b1eebc99-9c0b-4ef8-bb6d-6bb9bd380a12")
+    account = account_service.get(
+        "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11", "b1eebc99-9c0b-4ef8-bb6d-6bb9bd380a12"
+    )
     assert account.balance == 1000
     assert account.max_daily_withdraw == 10000
     assert account.is_active is True
@@ -34,7 +36,9 @@ def test_create_account(session):
         "type": 1,
     }
     account_id = account_service.create(account_data).id
-    account = account_service.get(str(account_id))
+    account = account_service.get(
+        "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11", str(account_id)
+    )
     assert str(account.id) == str(account_id)
     assert str(account.user_id) == account_data["user_id"]
     assert account.balance == account_data["balance"]
@@ -50,8 +54,14 @@ def test_make_deposit(session):
     account_service = AccountService(
         account_repository, user_repository, transaction_repository
     )
-    account_service.make_deposit("b1eebc99-9c0b-4ef8-bb6d-6bb9bd380a12", 100)
-    account = account_service.get("b1eebc99-9c0b-4ef8-bb6d-6bb9bd380a12")
+    account_service.make_deposit(
+        "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11",
+        "b1eebc99-9c0b-4ef8-bb6d-6bb9bd380a12",
+        100,
+    )
+    account = account_service.get(
+        "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11", "b1eebc99-9c0b-4ef8-bb6d-6bb9bd380a12"
+    )
     assert account.balance == 1100
 
 
@@ -62,8 +72,14 @@ def test_make_withdraw(session):
     account_service = AccountService(
         account_repository, user_repository, transaction_repository
     )
-    account_service.make_withdraw("b1eebc99-9c0b-4ef8-bb6d-6bb9bd380a12", 100)
-    account = account_service.get("b1eebc99-9c0b-4ef8-bb6d-6bb9bd380a12")
+    account_service.make_withdraw(
+        "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11",
+        "b1eebc99-9c0b-4ef8-bb6d-6bb9bd380a12",
+        100,
+    )
+    account = account_service.get(
+        "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11", "b1eebc99-9c0b-4ef8-bb6d-6bb9bd380a12"
+    )
     assert account.balance == 900
 
 
@@ -74,7 +90,9 @@ def test_block_account(session):
     account_service = AccountService(
         account_repository, user_repository, transaction_repository
     )
-    account = account_service.block_account("b1eebc99-9c0b-4ef8-bb6d-6bb9bd380a12")
+    account = account_service.block_account(
+        "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11", "b1eebc99-9c0b-4ef8-bb6d-6bb9bd380a12"
+    )
     assert account.is_active is False
 
 
@@ -85,8 +103,12 @@ def test_unblock_account(session):
     account_service = AccountService(
         account_repository, user_repository, transaction_repository
     )
-    account_service.block_account("b1eebc99-9c0b-4ef8-bb6d-6bb9bd380a12")
-    account = account_service.unblock_account("b1eebc99-9c0b-4ef8-bb6d-6bb9bd380a12")
+    account_service.block_account(
+        "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11", "b1eebc99-9c0b-4ef8-bb6d-6bb9bd380a12"
+    )
+    account = account_service.unblock_account(
+        "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11", "b1eebc99-9c0b-4ef8-bb6d-6bb9bd380a12"
+    )
     assert account.is_active is True
 
 

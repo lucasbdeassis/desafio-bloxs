@@ -10,7 +10,7 @@ account_controller = blueprints.Blueprint("account_controller", __name__)
 @requires_auth()
 def get_account(account_id):
     with InjectorFactory().get_account_service() as account_service:
-        account = account_service.get(account_id)
+        account = account_service.get(g.user_id, account_id)
         return account.model_dump(), 200
 
 
@@ -40,7 +40,9 @@ def create_account():
 @requires_auth()
 def make_deposit(account_id):
     with InjectorFactory().get_account_service() as account_service:
-        account = account_service.make_deposit(account_id, request.json["value"])
+        account = account_service.make_deposit(
+            g.user_id, account_id, request.json["value"]
+        )
         return account.model_dump(), 200
 
 
@@ -48,7 +50,9 @@ def make_deposit(account_id):
 @requires_auth()
 def make_withdraw(account_id):
     with InjectorFactory().get_account_service() as account_service:
-        account = account_service.make_withdraw(account_id, request.json["value"])
+        account = account_service.make_withdraw(
+            g.user_id, account_id, request.json["value"]
+        )
         return account.model_dump(), 200
 
 
@@ -56,7 +60,7 @@ def make_withdraw(account_id):
 @requires_auth()
 def block_account(account_id):
     with InjectorFactory().get_account_service() as account_service:
-        account = account_service.block_account(account_id)
+        account = account_service.block_account(g.user_id, account_id)
         return account.model_dump(), 200
 
 
@@ -64,7 +68,7 @@ def block_account(account_id):
 @requires_auth()
 def unblock_account(account_id):
     with InjectorFactory().get_account_service() as account_service:
-        account = account_service.unblock_account(account_id)
+        account = account_service.unblock_account(g.user_id, account_id)
         return account.model_dump(), 200
 
 

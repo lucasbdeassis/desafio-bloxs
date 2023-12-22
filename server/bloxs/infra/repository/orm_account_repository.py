@@ -24,10 +24,10 @@ class OrmAccountRepository(AccountRepository):
         )
         self.session.add(account_model)
 
-    def get(self, account_id: str):
+    def get(self, user_id, account_id: str):
         account_model = (
             self.session.query(AccountModel)
-            .filter(AccountModel.id == account_id)
+            .filter(AccountModel.id == account_id, AccountModel.user_id == user_id)
             .first()
         )
         account = Account(
