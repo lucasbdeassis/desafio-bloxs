@@ -27,7 +27,7 @@ function UserBalance() {
         <div class='card-body'>
           <h5 class='card-title'>Total:</h5>
           <p class='card-text'>
-            <strong>${balance}</strong>
+            <strong>${(balance / 100).toFixed(2)}</strong>
           </p>
         </div>
       </div>

@@ -40,7 +40,13 @@ function TransactionsTable({ count, setCount }) {
                   <tr key={index}>
                     <th scope='row'>{index + 1}</th>
                     <td>{transaction.account_name}</td>
-                    <td>${(transaction.amount / 100).toFixed(2)}</td>
+                    <td
+                      style={{
+                        color: transaction.amount > 0 ? "green" : "red",
+                      }}
+                    >
+                      ${(transaction.amount / 100).toFixed(2)}
+                    </td>
                     <td>
                       {new Date(
                         transaction.transaction_date
