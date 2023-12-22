@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-function TransactionsTable() {
+function TransactionsTable({ count, setCount }) {
   const [transactions, setTransactions] = useState([]);
   const [maxTransactions, setMaxTransactions] = useState(10);
 
@@ -13,7 +13,7 @@ function TransactionsTable() {
       .then((response) => response.json())
       .then((data) => setTransactions(data))
       .catch((error) => console.error("Error:", error));
-  }, []);
+  }, [count]);
 
   return (
     <div className='container'>
@@ -24,8 +24,9 @@ function TransactionsTable() {
             <thead>
               <tr>
                 <th scope='col'>#</th>
-                <th scope='col'>Amount</th>
-                <th scope='col'>Transaction Date</th>
+                <th scope='col'>Conta</th>
+                <th scope='col'>Valor</th>
+                <th scope='col'>Data</th>
               </tr>
             </thead>
             <tbody>
@@ -38,6 +39,7 @@ function TransactionsTable() {
                 .map((transaction, index) => (
                   <tr key={index}>
                     <th scope='row'>{index + 1}</th>
+                    <td>{transaction.account_name}</td>
                     <td>${(transaction.amount / 100).toFixed(2)}</td>
                     <td>
                       {new Date(
